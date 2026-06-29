@@ -195,7 +195,7 @@ export default function PaymentSourcesModal({ isOpen, onClose, userId, onPayment
                 <label className={formStyles.label}>Tipo</label>
                 <select 
                   className={formStyles.select} value={formData.type}
-                  onChange={e => setFormData({...formData, type: e.target.value})}
+                  onChange={e => setFormData({...formData, type: e.target.value as PaymentSourceType})}
                 >
                   <option value="CREDIT_CARD">Cartão de Crédito</option>
                   <option value="DEBIT">Cartão de Débito</option>
