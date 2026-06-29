@@ -1,0 +1,375 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.greeting {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-dim);
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.monthNav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-surface-hover);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.navBtn {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.navBtn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.monthLabel {
+  font-weight: 600;
+  min-width: 100px;
+  text-align: center;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 0;
+  color: var(--color-text-dim);
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--color-text-dim);
+}
+
+/* ── Summary Cards ── */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.summaryCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summaryLabel {
+  color: var(--color-text-dim);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summaryValue {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.income { color: var(--color-success); }
+.expense { color: var(--color-danger); }
+.balanced { color: var(--color-text); }
+
+/* ── Sections ── */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.sectionSubtitle {
+  color: var(--color-text-dim);
+  font-size: 0.9rem;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.actionBtn:hover {
+  background: var(--color-border);
+}
+
+/* ── Rule 50/30/20 Grid ── */
+.ruleGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.ruleCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ruleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.ruleName {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.ruleTargetBadge {
+  background: var(--color-primary-glow);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.ruleDesc {
+  color: var(--color-text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+.ruleAmounts {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ruleSpent {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.ruleTargetAmount {
+  color: var(--color-text-dim);
+  font-size: 0.9rem;
+}
+
+.progressBar {
+  height: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-out, background-color 0.3s;
+}
+
+.progressMarker {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255,255,255,0.7);
+  z-index: 2;
+}
+
+.ruleFooter {
+  margin-top: auto;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+
+.ruleAlert {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-danger);
+  font-weight: 500;
+}
+
+.ruleOk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-success);
+  font-weight: 500;
+}
+
+/* ── Budgets Grid ── */
+.budgetGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.budgetCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 16px 20px;
+  border-radius: 12px;
+}
+
+.budgetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.budgetName {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.budgetPercent {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-dim);
+}
+
+.budgetAmounts {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.budgetSpent {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.budgetLimit {
+  font-size: 0.9rem;
+  color: var(--color-text-dim);
+}
+
+.emptyBudgets {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  color: var(--color-text-dim);
+}
+
+.textBtn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.textBtn:hover {
+  text-decoration: underline;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.iconBtn:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.iconBtn.danger:hover {
+  background: rgba(255, 71, 87, 0.1);
+  color: var(--color-danger);
+}
+
+/* ── Mobile Responsiveness ── */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .summaryGrid, .ruleGrid, .budgetGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}

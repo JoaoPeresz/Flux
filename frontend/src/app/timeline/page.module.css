@@ -1,0 +1,231 @@
+.page { max-width: 1100px; }
+
+.header { margin-bottom: 28px; }
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* ── Month Strip ── */
+.monthStrip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  margin-bottom: 28px;
+  scrollbar-width: thin;
+}
+
+.monthCard {
+  flex-shrink: 0;
+  width: 110px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 14px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.monthCard:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+}
+
+.monthCard.active {
+  border-color: var(--color-primary);
+  background: var(--color-primary-glow);
+}
+
+.monthName {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.monthYear {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.monthBalance {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.positive { color: var(--color-success); }
+.negative { color: var(--color-danger); }
+
+/* ── Detail Panel ── */
+.detail {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 24px 28px;
+}
+
+.detailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detailTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.detailSummary {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.incomeTag, .expenseTag, .balanceTag {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.incomeTag  { background: var(--color-success-bg);  color: var(--color-success); }
+.expenseTag { background: var(--color-danger-bg);   color: var(--color-danger);  }
+.balanceTag { background: var(--color-surface-2);   }
+
+.itemList { display: flex; flex-direction: column; gap: 8px; }
+
+.projectedItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.projectedItem:hover { background: var(--color-surface-2); }
+
+.itemDot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.itemInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.itemDesc {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.itemCategory {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.installmentBadge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-3);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.itemAmount {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-danger);
+}
+
+.itemAmount.positive { color: var(--color-success); }
+
+.emptyDetail, .empty, .loading {
+  text-align: center;
+  padding: 48px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .title { font-size: 20px; }
+  .subtitle { font-size: 12px; }
+
+  .monthStrip {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .monthCard {
+    width: 80px;
+    padding: 10px 8px;
+  }
+
+  .monthName { font-size: 12px; }
+  .monthYear { font-size: 10px; }
+  .monthBalance { font-size: 11px; }
+
+  .detail {
+    padding: 16px;
+    border-radius: var(--radius-lg);
+  }
+
+  .detailHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .detailSummary {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .incomeTag, .expenseTag, .balanceTag {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .projectedItem {
+    gap: 8px;
+    padding: 8px;
+    flex-wrap: wrap;
+  }
+
+  .itemDesc { font-size: 13px; }
+  .itemCategory { font-size: 11px; }
+  .itemAmount { font-size: 13px; }
+}

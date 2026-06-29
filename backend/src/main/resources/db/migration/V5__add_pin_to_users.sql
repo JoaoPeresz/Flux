@@ -1,0 +1,6 @@
+ALTER TABLE users ADD COLUMN email VARCHAR(100);
+UPDATE users SET email = name || '@flux.local' WHERE email IS NULL;
+ALTER TABLE users ALTER COLUMN email SET NOT NULL;
+ALTER TABLE users ADD CONSTRAINT users_email_key UNIQUE (email);
+
+ALTER TABLE users ADD COLUMN pin VARCHAR(10) DEFAULT '1234' NOT NULL;

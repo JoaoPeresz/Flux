@@ -1,0 +1,375 @@
+.page { max-width: 1100px; }
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.headerLeft {}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── Month Navigator ── */
+.monthNav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 6px 14px;
+}
+
+.monthLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 110px;
+  text-align: center;
+}
+
+.navBtn {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  transition: all var(--transition-fast);
+}
+
+.navBtn:hover {
+  color: var(--color-text);
+  background: var(--color-surface-2);
+}
+
+/* ── Add Button ── */
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+  font-family: inherit;
+}
+
+.addBtn:hover { opacity: 0.88; }
+
+/* ── Filter Bar ── */
+.filterBar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filterPill {
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.filterPill:hover {
+  border-color: var(--color-border-hover);
+  color: var(--color-text);
+}
+
+.filterPill.active {
+  background: var(--color-primary-glow);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ── Transaction List ── */
+.listHeader {
+  display: grid;
+  grid-template-columns: 1fr 120px 100px 90px 80px 80px;
+  gap: 12px;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.txList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.txRow {
+  display: grid;
+  grid-template-columns: 1fr 120px 100px 90px 80px 80px;
+  gap: 12px;
+  align-items: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  transition: border-color var(--transition-fast);
+}
+
+.txRow:hover {
+  border-color: var(--color-border-hover);
+}
+
+.txRow.paid {
+  opacity: 0.55;
+}
+
+/* ── Transaction Info Column ── */
+.txInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.categoryDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.txDetails {
+  min-width: 0;
+}
+
+.txDesc {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.txCat {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* ── Source Badge ── */
+.sourceBadge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-2);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid var(--color-border);
+  text-align: center;
+}
+
+/* ── Type Badge ── */
+.typeBadge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.typeBadge.FIXED     { background: var(--color-info-bg);    color: var(--color-info);    }
+.typeBadge.INSTALLMENT{ background: var(--color-warning-bg); color: var(--color-warning); }
+.typeBadge.VARIABLE  { background: var(--color-primary-glow); color: var(--color-primary); }
+.typeBadge.ONE_TIME  { background: var(--color-surface-3);   color: var(--color-text-secondary); }
+.typeBadge.INCOME    { background: var(--color-success-bg);  color: var(--color-success); }
+
+/* ── Amount Column ── */
+.txAmount {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+  color: var(--color-danger);
+  white-space: nowrap;
+}
+
+.txAmount.income { color: var(--color-success); }
+
+/* ── Date Column ── */
+.txDate {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ── Actions Column ── */
+.txActions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.iconBtn:hover { color: var(--color-text); background: var(--color-surface-2); }
+.iconBtn.paid  { color: var(--color-success); }
+.iconBtn.danger:hover { color: var(--color-danger); }
+
+/* ── Empty & Loading ── */
+.empty, .loading {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.emptyIcon {
+  margin-bottom: 12px;
+  color: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.emptyText {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--color-text-secondary);
+}
+
+.emptyHint {
+  font-size: 13px;
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .headerRight {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .title { font-size: 20px; }
+
+  .addBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .listHeader { display: none; }
+
+  .txRow {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 6px 8px;
+    padding: 12px;
+  }
+
+  .txInfo {
+    grid-column: 1 / 2;
+    grid-row: 1;
+  }
+
+  .txAmount {
+    grid-column: 2 / 3;
+    grid-row: 1;
+    font-size: 14px;
+  }
+
+  .sourceBadge {
+    grid-column: 1 / 2;
+    grid-row: 2;
+    justify-self: start;
+    font-size: 10px;
+  }
+
+  .typeBadge {
+    font-size: 10px;
+  }
+
+  .txDate {
+    font-size: 11px;
+    text-align: left;
+  }
+
+  .txActions {
+    grid-column: 2 / 3;
+    grid-row: 2;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  .filterBar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .filterPill {
+    flex-shrink: 0;
+  }
+
+  .monthNav {
+    width: 100%;
+    justify-content: center;
+  }
+}

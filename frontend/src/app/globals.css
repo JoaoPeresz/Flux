@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* ============================================================
+   FLUX — Design Tokens (CSS Custom Properties)
+   Swap the entire palette by changing this :root block.
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* --- Brand Colors --- */
+    --color-primary:        #7C6FFF;
+    --color-primary-hover:  #6A5EE8;
+    --color-primary-glow:   rgba(124, 111, 255, 0.25);
+
+    /* --- Surfaces --- */
+    --color-bg:             #0D0D14;
+    --color-surface:        #13131F;
+    --color-surface-2:      #1A1A2E;
+    --color-surface-3:      #22223B;
+    --color-border:         rgba(255, 255, 255, 0.07);
+    --color-border-hover:   rgba(255, 255, 255, 0.14);
+
+    /* --- Text --- */
+    --color-text:           #E8E8F0;
+    --color-text-secondary: #8888A8;
+    --color-text-muted:     #55556A;
+
+    /* --- Semantic --- */
+    --color-success:        #4ADE80;
+    --color-success-bg:     rgba(74, 222, 128, 0.1);
+    --color-warning:        #FBBF24;
+    --color-warning-bg:     rgba(251, 191, 36, 0.1);
+    --color-danger:         #F87171;
+    --color-danger-bg:      rgba(248, 113, 113, 0.1);
+    --color-info:           #60A5FA;
+    --color-info-bg:        rgba(96, 165, 250, 0.1);
+
+    /* --- Spacing --- */
+    --radius-sm:   6px;
+    --radius-md:   12px;
+    --radius-lg:   18px;
+    --radius-xl:   24px;
+    --radius-full: 9999px;
+
+    /* --- Shadows --- */
+    --shadow-sm:   0 1px 3px rgba(0,0,0,0.4);
+    --shadow-md:   0 4px 16px rgba(0,0,0,0.5);
+    --shadow-lg:   0 8px 32px rgba(0,0,0,0.6);
+    --shadow-glow: 0 0 24px var(--color-primary-glow);
+
+    /* --- Transitions --- */
+    --transition-fast:   150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow:   400ms ease;
+  }
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', 'Geist', system-ui, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-surface-3); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-text-muted); }
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+
+::selection {
+  background: var(--color-primary-glow);
+  color: var(--color-text);
+}
+
+/* ═══════════════════════════════════════════
+   MOBILE GLOBAL
+   ═══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+
+  /* Make tap targets comfortable */
+  button, a, select, input {
+    min-height: 40px;
+  }
+
+  /* Prevent horizontal overflow */
+  body {
+    overflow-x: hidden;
+  }
+}
