@@ -125,25 +125,19 @@ export default function CategoriesPage() {
     }
   }
 
-  return (
-    <div className={styles.page}>
-      <div className={styles.header}>
-        <div>
-          <h1 className={styles.title}>Categorias</h1>
-          <p className={styles.subtitle}>Gerencie como seus gastos são classificados</p>
-        </div>
-        
-        <button className={styles.addBtn} onClick={handleOpenNew}>
-          <AddRoundedIcon style={{ fontSize: 20 }} />
-          Nova Categoria
-        </button>
-      </div>
+  const incomes = categories.filter(c => c.isIncome)
+  const needs = categories.filter(c => !c.isIncome && c.ruleGroup === 'NEEDS')
+  const wants = categories.filter(c => !c.isIncome && c.ruleGroup === 'WANTS')
+  const savings = categories.filter(c => !c.isIncome && c.ruleGroup === 'SAVINGS')
 
+  const renderGroup = (title: string, list: Category[], badgeClass: string, badgeLabel: string) => (
+    <div style={{ marginBottom: 32 }}>
+      <h2 className={styles.groupTitle}>{title}</h2>
       <div className={styles.grid}>
-        {loading ? (
-          <div className={styles.loading}>Carregando...</div>
+        {list.length === 0 ? (
+          <div className={styles.emptyGroup}>Nenhuma categoria adicionada.</div>
         ) : (
-          categories.map(c => (
+          list.map(c => (
             <div key={c.id} className={styles.card}>
               <div className={styles.cardHeader}>
                 <div className={styles.iconWrap} style={{ backgroundColor: c.color }}>
@@ -160,12 +154,41 @@ export default function CategoriesPage() {
               </div>
               <div className={styles.cardInfo}>
                 <div className={styles.cardTitle}>{c.name}</div>
-                <div className={`${styles.badge} ${c.isIncome ? styles.income : styles.expense}`}>
-                  {c.isIncome ? 'Receita' : 'Despesa'}
+                <div className={`${styles.badge} ${badgeClass}`}>
+                  {badgeLabel}
                 </div>
               </div>
             </div>
           ))
+        )}
+      </div>
+    </div>
+  )
+
+  return (
+    <div className={styles.page}>
+      <div className={styles.header}>
+        <div>
+          <h1 className={styles.title}>Categorias</h1>
+          <p className={styles.subtitle}>Gerencie como seus gastos são classificados</p>
+        </div>
+        
+        <button className={styles.addBtn} onClick={handleOpenNew}>
+          <AddRoundedIcon style={{ fontSize: 20 }} />
+          Nova Categoria
+        </button>
+      </div>
+
+      <div>
+        {loading ? (
+          <div className={styles.loading}>Carregando...</div>
+        ) : (
+          <>
+            {renderGroup('Receitas', incomes, styles.income, 'Receita')}
+            {renderGroup('Necessidades (50%)', needs, styles.expense, 'Necessidade')}
+            {renderGroup('Desejos / Lazer (30%)', wants, styles.expense, 'Desejo / Lazer')}
+            {renderGroup('Poupança / Investimentos (20%)', savings, styles.expense, 'Investimento')}
+          </>
         )}
       </div>
 

@@ -139,9 +139,28 @@ export default function BatchTransactionModal({ isOpen, onClose, userId, payment
                     value={row.categoryId} onChange={e => handleChange(row.id, 'categoryId', e.target.value)}
                     style={{ flex: 2 }}
                   >
-                    {categories.map(c => (
-                      <option key={c.id} value={c.id}>{c.name}</option>
-                    ))}
+                    {categories.filter(c => c.isIncome).length > 0 && (
+                      <optgroup label="Receitas">
+                        {categories.filter(c => c.isIncome).map(c => (
+                          <option key={c.id} value={c.id}>{c.name}</option>
+                        ))}
+                      </optgroup>
+                    )}
+                    <optgroup label="Necessidades (50%)">
+                      {categories.filter(c => !c.isIncome && c.ruleGroup === 'NEEDS').map(c => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Desejos / Lazer (30%)">
+                      {categories.filter(c => !c.isIncome && c.ruleGroup === 'WANTS').map(c => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Poupança / Investimentos (20%)">
+                      {categories.filter(c => !c.isIncome && c.ruleGroup === 'SAVINGS').map(c => (
+                        <option key={c.id} value={c.id}>{c.name}</option>
+                      ))}
+                    </optgroup>
                   </select>
                 </div>
               </div>

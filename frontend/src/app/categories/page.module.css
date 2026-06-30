@@ -42,6 +42,26 @@
 .addBtn:hover { opacity: 0.88; }
 
 /* ── Category List ── */
+.groupTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.emptyGroup {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  padding: 12px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
