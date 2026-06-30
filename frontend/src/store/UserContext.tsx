@@ -58,6 +58,20 @@ export function UserProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('flux_active_user')
   }
 
+  const isAuthRoute = pathname === '/login' || pathname === '/register'
+  
+  if (loading && !isAuthRoute) {
+    return (
+      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-muted)' }}>
+        Carregando...
+      </div>
+    )
+  }
+
+  if (!loading && !activeUser && !isAuthRoute) {
+    return null // aguarda o redirect do useEffect
+  }
+
   return (
     <UserContext.Provider value={{ users, activeUser, setActiveUser, loading, refetch: fetchUsers, logout }}>
       {children}
