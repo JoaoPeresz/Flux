@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Modal from '@/components/ui/Modal'
 import { paymentSourceApi } from '@/services/api'
-import { PaymentSource, CreatePaymentSourceRequest } from '@/types'
+import { PaymentSource, CreatePaymentSourceRequest, PaymentSourceType } from '@/types'
 import formStyles from '@/components/ui/form.module.css'
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded'
 import EditRoundedIcon from '@mui/icons-material/EditRounded'
