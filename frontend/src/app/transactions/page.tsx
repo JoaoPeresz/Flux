@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useUser } from '@/store/UserContext'
 import { transactionApi, categoryApi, paymentSourceApi } from '@/services/api'
 import { Transaction, Category, PaymentSource } from '@/types'
@@ -33,7 +34,17 @@ const TYPE_LABELS: Record<string, string> = {
 }
 
 export default function TransactionsPage() {
+  return (
+    <Suspense fallback={<div className={styles.loading}>Carregando lançamentos...</div>}>
+      <TransactionsContent />
+    </Suspense>
+  )
+}
+
+function TransactionsContent() {
   const { activeUser } = useUser()
+  const searchParams = useSearchParams()
+  const router = useRouter()
   
   // Date State
   const [currentDate, setCurrentDate] = useState(() => {
@@ -48,7 +59,7 @@ export default function TransactionsPage() {
   const [loading, setLoading] = useState(true)
 
   // Filter State
-  const [filterType, setFilterType] = useState<string>('ALL') // ALL, EXPENSE, INCOME
+  const [filterType, setFilterType] = useState<string>(searchParams.get('filter') || 'ALL') // ALL, EXPENSE, INCOME, NEEDS, WANTS, SAVINGS
   const [sortOrder, setSortOrder] = useState<string>('DATE_DESC')
 
   // Modal State
@@ -205,8 +216,16 @@ export default function TransactionsPage() {
   const filteredTransactions = useMemo(() => {
     if (filterType === 'ALL') return transactions
     if (filterType === 'INCOME') return transactions.filter(t => t.categoryIsIncome)
-    return transactions.filter(t => !t.categoryIsIncome)
+    if (filterType === 'NEEDS') return transactions.filter(t => !t.categoryIsIncome && t.categoryRuleGroup === 'NEEDS')
+    if (filterType === 'WANTS') return transactions.filter(t => !t.categoryIsIncome && t.categoryRuleGroup === 'WANTS')
+    if (filterType === 'SAVINGS') return transactions.filter(t => !t.categoryIsIncome && t.categoryRuleGroup === 'SAVINGS')
+    return transactions.filter(t => !t.categoryIsIncome) // EXPENSE
   }, [transactions, filterType])
+
+  const handleFilterChange = (newFilter: string) => {
+    setFilterType(newFilter)
+    router.replace(`/transactions?filter=${newFilter}`)
+  }
 
   const groupedTransactions = useMemo(() => {
     const normal: Transaction[] = []
@@ -411,16 +430,28 @@ export default function TransactionsPage() {
         <FilterListRoundedIcon style={{ color: 'var(--color-text-muted)', marginRight: 4 }} />
         <button 
           className={`${styles.filterPill} ${filterType === 'ALL' ? styles.active : ''}`}
-          onClick={() => setFilterType('ALL')}
+          onClick={() => handleFilterChange('ALL')}
         >Todos</button>
         <button 
           className={`${styles.filterPill} ${filterType === 'EXPENSE' ? styles.active : ''}`}
-          onClick={() => setFilterType('EXPENSE')}
+          onClick={() => handleFilterChange('EXPENSE')}
         >Despesas</button>
         <button 
           className={`${styles.filterPill} ${filterType === 'INCOME' ? styles.active : ''}`}
-          onClick={() => setFilterType('INCOME')}
+          onClick={() => handleFilterChange('INCOME')}
         >Receitas</button>
+        <button 
+          className={`${styles.filterPill} ${filterType === 'NEEDS' ? styles.active : ''}`}
+          onClick={() => handleFilterChange('NEEDS')}
+        >Necessidades</button>
+        <button 
+          className={`${styles.filterPill} ${filterType === 'WANTS' ? styles.active : ''}`}
+          onClick={() => handleFilterChange('WANTS')}
+        >Lazer / Desejos</button>
+        <button 
+          className={`${styles.filterPill} ${filterType === 'SAVINGS' ? styles.active : ''}`}
+          onClick={() => handleFilterChange('SAVINGS')}
+        >Investimentos</button>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: '8px' }}>
           <span style={{ fontSize: '12px', color: 'var(--color-text-muted)', fontWeight: 500 }}>Ordenar por:</span>
           <select 

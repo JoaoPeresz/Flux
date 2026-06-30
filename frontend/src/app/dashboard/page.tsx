@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
+import { useRouter } from 'next/navigation'
 import { ChevronLeft, ChevronRight, Target, AlertTriangle, ShieldCheck, Trash2, Edit2 } from 'lucide-react'
 import { useUser } from '@/store/UserContext'
 import { transactionApi, budgetApi } from '@/services/api'
@@ -27,6 +28,7 @@ function getProgressColor(percent: number, target: number) {
 
 export default function DashboardPage() {
   const { activeUser } = useUser()
+  const router = useRouter()
   const now = new Date()
 
   const [year, setYear] = useState(now.getFullYear())
@@ -196,7 +198,12 @@ export default function DashboardPage() {
               const progressColor = getProgressColor(currentPct, stat.targetPct)
 
               return (
-                <div key={group} className={styles.ruleCard}>
+                <div 
+                  key={group} 
+                  className={styles.ruleCard} 
+                  onClick={() => router.push(`/transactions?filter=${group}`)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className={styles.ruleHeader}>
                     <div className={styles.ruleName}>{stat.name}</div>
                     <div className={styles.ruleTargetBadge}>{stat.targetPct}%</div>
