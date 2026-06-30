@@ -1,7 +1,7 @@
 import axios from 'axios'
 import type {
   User, Category, PaymentSource, Transaction, Budget, MonthSummary,
-  CreateTransactionRequest, UpsertBudgetRequest, CreatePaymentSourceRequest
+  CreateTransactionRequest, UpsertBudgetRequest, CreatePaymentSourceRequest, UpdatePaymentSourceRequest
 } from '@/types'
 
 const api = axios.create({
