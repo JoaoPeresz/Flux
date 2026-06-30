@@ -7,7 +7,7 @@
     var(--color-surface-2) 80px
   );
   background-size: 1000px 100%;
-  animation: shimmer 2s infinite linear;
+  animation: shimmer 3.5s infinite linear;
   border-radius: var(--radius-sm);
 }
 

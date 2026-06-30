@@ -78,20 +78,24 @@ export default function TimelinePage() {
       </div>
 
       {loading ? (
-        <div style={{ display: 'flex', gap: '24px', overflow: 'hidden', marginTop: '24px' }}>
-          <div style={{ flex: '0 0 100px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', marginTop: '16px' }}>
+          <div className={styles.monthStrip}>
             {[1, 2, 3, 4, 5, 6].map(i => (
-              <Skeleton key={i} style={{ height: '90px', borderRadius: 'var(--radius-lg)' }} />
+              <Skeleton key={i} className={styles.monthCard} style={{ height: '94px', width: '110px' }} />
             ))}
           </div>
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
-               <Skeleton style={{ height: '36px', width: '200px' }} />
-               <Skeleton style={{ height: '36px', width: '300px' }} />
+          <div className={styles.detail}>
+            <div className={styles.detailHeader}>
+               <Skeleton style={{ height: '28px', width: '150px' }} />
+               <div className={styles.detailSummary}>
+                 <Skeleton style={{ height: '28px', width: '100px', borderRadius: 'var(--radius-full)' }} />
+                 <Skeleton style={{ height: '28px', width: '100px', borderRadius: 'var(--radius-full)' }} />
+                 <Skeleton style={{ height: '28px', width: '120px', borderRadius: 'var(--radius-full)' }} />
+               </div>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {[1, 2, 3, 4, 5, 6, 7].map(i => (
-                <Skeleton key={i} style={{ height: '64px', borderRadius: 'var(--radius-lg)' }} />
+            <div className={styles.itemList}>
+              {[1, 2, 3, 4, 5, 6].map(i => (
+                <Skeleton key={i} style={{ height: '56px', borderRadius: 'var(--radius-md)' }} />
               ))}
             </div>
           </div>
