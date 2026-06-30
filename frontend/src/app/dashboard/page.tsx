@@ -7,6 +7,7 @@ import { transactionApi, budgetApi } from '@/services/api'
 import type { Transaction, Budget, RuleGroup } from '@/types'
 import BudgetModal from '@/components/BudgetModal'
 import RuleConfigModal from '@/components/RuleConfigModal'
+import Skeleton from '@/components/ui/Skeleton'
 import styles from './page.module.css'
 
 const MONTHS = [
@@ -121,7 +122,41 @@ export default function DashboardPage() {
       </div>
 
       {loading ? (
-        <div className={styles.loading}>Carregando painel...</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', marginTop: '24px' }}>
+          <div className={styles.summaryGrid}>
+            <Skeleton style={{ height: '110px', borderRadius: 'var(--radius-lg)' }} />
+            <Skeleton style={{ height: '110px', borderRadius: 'var(--radius-lg)' }} />
+            <Skeleton style={{ height: '110px', borderRadius: 'var(--radius-lg)' }} />
+          </div>
+          
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+            <div>
+              <Skeleton style={{ height: '28px', width: '200px', marginBottom: '8px' }} />
+              <Skeleton style={{ height: '16px', width: '300px' }} />
+            </div>
+            <Skeleton style={{ height: '36px', width: '150px', borderRadius: 'var(--radius-full)' }} />
+          </div>
+
+          <div className={styles.ruleGrid}>
+            <Skeleton style={{ height: '200px', borderRadius: 'var(--radius-lg)' }} />
+            <Skeleton style={{ height: '200px', borderRadius: 'var(--radius-lg)' }} />
+            <Skeleton style={{ height: '200px', borderRadius: 'var(--radius-lg)' }} />
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '16px' }}>
+            <div>
+              <Skeleton style={{ height: '28px', width: '250px', marginBottom: '8px' }} />
+              <Skeleton style={{ height: '16px', width: '280px' }} />
+            </div>
+            <Skeleton style={{ height: '36px', width: '150px', borderRadius: 'var(--radius-full)' }} />
+          </div>
+
+          <div className={styles.budgetGrid}>
+            <Skeleton style={{ height: '130px', borderRadius: 'var(--radius-lg)' }} />
+            <Skeleton style={{ height: '130px', borderRadius: 'var(--radius-lg)' }} />
+            <Skeleton style={{ height: '130px', borderRadius: 'var(--radius-lg)' }} />
+          </div>
+        </div>
       ) : (
         <>
           {/* Summary Cards */}

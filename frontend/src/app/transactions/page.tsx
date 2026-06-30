@@ -22,6 +22,7 @@ import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded'
 import BoltRoundedIcon from '@mui/icons-material/BoltRounded'
 import PaymentSourcesModal from '@/components/PaymentSourcesModal'
 import BatchTransactionModal from '@/components/BatchTransactionModal'
+import Skeleton from '@/components/ui/Skeleton'
 
 const TYPE_LABELS: Record<string, string> = {
   FIXED: 'Fixo',
@@ -447,7 +448,11 @@ export default function TransactionsPage() {
         </div>
 
         {loading ? (
-          <div className={styles.loading}>Carregando...</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {[1, 2, 3, 4, 5].map(i => (
+               <Skeleton key={i} style={{ height: '76px', borderRadius: 'var(--radius-lg)' }} />
+            ))}
+          </div>
         ) : filteredTransactions.length === 0 ? (
           <div className={styles.empty}>
             <ReceiptLongRoundedIcon className={styles.emptyIcon} style={{ fontSize: 48 }} />

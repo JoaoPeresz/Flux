@@ -7,6 +7,7 @@ import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded'
 import { useUser } from '@/store/UserContext'
 import { timelineApi } from '@/services/api'
 import type { MonthSummary, ProjectedItem } from '@/types'
+import Skeleton from '@/components/ui/Skeleton'
 import styles from './page.module.css'
 
 const MONTHS = [
@@ -77,7 +78,24 @@ export default function TimelinePage() {
       </div>
 
       {loading ? (
-        <div className={styles.loading}>Calculando prospecção...</div>
+        <div style={{ display: 'flex', gap: '24px', overflow: 'hidden', marginTop: '24px' }}>
+          <div style={{ flex: '0 0 100px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            {[1, 2, 3, 4, 5, 6].map(i => (
+              <Skeleton key={i} style={{ height: '90px', borderRadius: 'var(--radius-lg)' }} />
+            ))}
+          </div>
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
+               <Skeleton style={{ height: '36px', width: '200px' }} />
+               <Skeleton style={{ height: '36px', width: '300px' }} />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {[1, 2, 3, 4, 5, 6, 7].map(i => (
+                <Skeleton key={i} style={{ height: '64px', borderRadius: 'var(--radius-lg)' }} />
+              ))}
+            </div>
+          </div>
+        </div>
       ) : (
         <>
           {/* Month strip */}
