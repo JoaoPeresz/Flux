@@ -20,6 +20,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const [users, setUsers] = useState<User[]>([])
   const [activeUser, setActiveUserState] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [slowLoading, setSlowLoading] = useState(false)
 
   const fetchUsers = async () => {
     try {
@@ -37,7 +38,17 @@ export function UserProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  useEffect(() => { fetchUsers() }, [])
+  useEffect(() => { 
+    fetchUsers()
+  }, [])
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout
+    if (loading) {
+      timeout = setTimeout(() => setSlowLoading(true), 4000)
+    }
+    return () => clearTimeout(timeout)
+  }, [loading])
 
   const setActiveUser = (user: User) => {
     setActiveUserState(user)
@@ -62,8 +73,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
   
   if (loading && !isAuthRoute) {
     return (
-      <div style={{ display: 'flex', height: '100vh', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-muted)' }}>
-        Carregando...
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', alignItems: 'center', justifyContent: 'center', color: 'var(--color-text-muted)' }}>
+        <div style={{ marginBottom: '16px' }}>Carregando...</div>
+        {slowLoading && (
+          <div style={{ fontSize: '13px', maxWidth: '400px', color: 'var(--color-warning)', background: 'var(--color-warning-bg)', padding: '16px', borderRadius: '12px', textAlign: 'center' }}>
+            ⏳ <strong>O servidor está acordando...</strong><br />
+            Como a API está hospedada em um plano gratuito (Render), o primeiro acesso do dia pode levar até 1 minuto. Aguarde!
+          </div>
+        )}
       </div>
     )
   }

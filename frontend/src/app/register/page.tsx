@@ -16,16 +16,25 @@ export default function RegisterPage() {
   const [pin, setPin] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [slowLoading, setSlowLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setLoading(true)
+    setSlowLoading(false)
+
+    const timeout = setTimeout(() => {
+      setSlowLoading(true)
+    }, 4000)
+
     try {
       const user = await userApi.register({ name, email, pin, avatarColor: '#6C63FF' })
+      clearTimeout(timeout)
       setActiveUser(user)
       router.push('/dashboard')
     } catch (err: any) {
+      clearTimeout(timeout)
       setError(err.response?.data?.message || 'Erro ao criar conta. Tente outro e-mail.')
     } finally {
       setLoading(false)
@@ -82,6 +91,13 @@ export default function RegisterPage() {
             {loading ? 'Criando...' : 'Criar Conta'}
           </button>
         </form>
+
+        {slowLoading && (
+          <div style={{ marginTop: '16px', fontSize: '13px', color: 'var(--color-warning)', background: 'var(--color-warning-bg)', padding: '12px', borderRadius: '8px', textAlign: 'center' }}>
+            ⏳ <strong>O servidor está acordando...</strong><br/>
+            Como a API está hospedada em um plano gratuito (Render), o primeiro acesso pode levar até 1 minuto. Aguarde!
+          </div>
+        )}
 
         <p className={styles.footerText}>
           Já tem uma conta? <Link href="/login" className={styles.link}>Entrar</Link>
