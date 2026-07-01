@@ -23,6 +23,21 @@
   padding-bottom: 4px;
   margin-bottom: 28px;
   scrollbar-width: thin;
+  scrollbar-color: var(--color-surface-3) var(--color-surface);
+}
+
+.monthStrip::-webkit-scrollbar {
+  height: 6px;
+}
+.monthStrip::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+.monthStrip::-webkit-scrollbar-thumb {
+  background: var(--color-surface-3);
+  border-radius: var(--radius-full);
+}
+.monthStrip::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
 }
 
 .monthCard {
